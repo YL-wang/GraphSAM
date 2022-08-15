@@ -33,8 +33,8 @@ optimizer = GraphSAM(
     params=model.parameters(),
     rho=0.05,
     beta=0.99,
-	gamma=0.5,
-	lambda=1,
+    gamma=0.5,
+    lambda=1,
     base_optimizer=base_optimizer,
     **kwargs
 )
