@@ -12,9 +12,7 @@ python train_graph.py --seed 777 --fold 5 --epochs 30 --dataset <datasets> --spl
 where `` <rho> `` is neighborhood ball size. `` <GraphSAM>=2 `` is the GraphSAM algorithm. 
 `` <radius> `` is generally equal to `` <rho> ``. `` <lambda> `` is rho's update rate .  `` <gamma> ``is step_rho's learning rate. `` <beta> `` is smoothing parameters of moving average.
 <br>
-``
-python ns_graph.py --epochs <epochs> --par <par> --rate <rate>
-``
+
 
 ```python
 from GraphSAM import GraphSAM
