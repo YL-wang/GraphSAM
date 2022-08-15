@@ -239,8 +239,9 @@ def add_finetune_args(parser: ArgumentParser):
     # SAM arg
     parser.add_argument('--rho', type=float, default=0.05)
     parser.add_argument('--radius', type=float, default=0.05)
-    parser.add_argument('--alpha', type=float, default=0.999)
-
+    parser.add_argument('--alpha', type=float, default=0.99)
+    parser.add_argument('--epoch_steps', type=int, default=1)
+    parser.add_argument('--gamma', type=float, default=0.5)
 
 def add_pretrain_args(parser: ArgumentParser):
     parser.add_argument('--cuda', type=bool, default=True,

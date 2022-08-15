@@ -123,6 +123,8 @@ class GraphSAM(torch.optim.Optimizer):
         self.gradh = None
         self.grads = None
         self.alpha = arg.alpha
+        self.step_size = arg.epoch_steps
+        self.gamma = arg.gamma
 
 
     @torch.no_grad()
@@ -228,10 +230,19 @@ class GraphSAM(torch.optim.Optimizer):
         closure = torch.enable_grad()(closure)  # the closure should do a full forward-backward pass
         if i == 0:
             loss.backward()
-
+        if epoch % self.step_size == 0 and i == 0:
+            self.step_rho(epoch)
+            # if self.rho < 0.001:
+            #     self.rho = 0.001
+            #     self.radius = 0.001
+            print(self.rho)
         self.first_step(zero_grad=True, i=i)
         self.loss = closure()
         self.second_step()
+
+    def step_rho(self, epoch):
+        self.rho = self.rho * pow(self.gamma, epoch / self.step_size)
+        self.radius = self.radius * pow(self.gamma, epoch / self.step_size)
 
     def get_loss(self):
         return self.loss

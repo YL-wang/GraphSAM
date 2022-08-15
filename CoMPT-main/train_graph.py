@@ -11,13 +11,17 @@ from transformer_graph import make_model
 from utils import ScheduledOptim, get_options, get_loss, cal_loss, evaluate, scaffold_split, build_lr_scheduler
 from collections import defaultdict
 from scheduler import NoamLR
-from sam import SAM, GraphSAM
+from sam import SAM, GraphSAM, LookSAM
 import warnings
 warnings.filterwarnings("ignore")
-
+import copy
+model_initial = 0
+model_final = 0
 
 def model_train(model, train_dataset, valid_dataset, model_params, train_params, dataset_name, fold):
     # build data loader
+    # stores the initial point in parameter space
+    model_initial = copy.deepcopy(model)
     train_loader = DataLoader(dataset=train_dataset, batch_size=train_params['batch_size'], collate_fn=mol_collate_func,
                               shuffle=True, drop_last=True, num_workers=4, pin_memory=True)
 
@@ -314,6 +318,9 @@ def model_train(model, train_dataset, valid_dataset, model_params, train_params,
         #         file = '/home/wangyili/G2G/gh_adam.txt'
         #         Save_list(gh_list, file)
 
+        with open('/root/grover-main/train_loss.txt', 'a', encoding='utf-8') as f:
+           f.write("%.4f"%np.mean(train_loss))
+           f.write(',')
 
 
 
@@ -329,7 +336,7 @@ def model_test(checkpoint, test_dataset, model_params, train_params):
     model = make_model(**model_params)
     model.to(train_params['device'])
     model.load_state_dict(checkpoint['state_dict'])
-
+    model_final = copy.deepcopy(model)
     # test
     model.eval()
     with torch.no_grad():
@@ -395,7 +402,8 @@ if __name__ == '__main__':
     parser.add_argument('--rho', type=float, default=0.05)
     parser.add_argument('--radius', type=float, default=0.05)
     parser.add_argument('--alpha', type=float, default=0.99)
-    parser.add_argument('--epoch_steps', type=int, default=5)
+    parser.add_argument('--epoch_steps', type=int, default=1)
+    parser.add_argument('--gamma', type=float, default=0.5)
 
     args = parser.parse_args()
 
