@@ -1,18 +1,17 @@
 # GraphSAM
-## Experiments
 
 
-### Training
-cd CoMPT-main
+## Training
+
+###CoMPT <br>
+cd CoMPT-main <br>
 ``
 python train_graph.py --seed 777 --fold 5 --epochs 30 --dataset <datasets> --split random --sam <GraphSAM> --rho <rho> --radius <radius> --epoch_steps <lambda> --alpha <beta> --gamma <gamma>
 ``
 <br>
-where `` <par> `` is a contrastive loss ratio. `` <rate> `` is the perturbation ratio of data augmentation. 
-`` <topk> `` is the number of subgraphs involved in contrastive learning. `` <load_CL> `` is to add contrastive learning at the Nth epoch, default is 0.
+where `` <rho> `` is neighborhood ball size. `` <GraphSAM>=2 `` is the GraphSAM algorithm. 
+`` <radius> `` is generally equal to `` <rho> ``. `` <lambda> `` is rho's update rate .  `` <gamma> ``is step_rho's learning rate. `` <beta> `` is smoothing parameters of moving average.
 <br>
-###GROVER <br>
-cd grover-main
 ``
 python ns_graph.py --epochs <epochs> --par <par> --rate <rate>
 ``
