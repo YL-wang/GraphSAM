@@ -3,7 +3,7 @@
 
 ## Training
 
-###CoMPT <br>
+### CoMPT <br>
 cd CoMPT-main <br>
 ``
 python train_graph.py --seed 777 --fold 5 --epochs 30 --dataset <datasets> --split random --sam <GraphSAM> --rho <rho> --radius <radius> --epoch_steps <lambda> --alpha <beta> --gamma <gamma>
