@@ -31,22 +31,22 @@ optimizer = GraphSAM(
     **kwargs
 )
 for epoch in range(epochs):
-	i=0
-	for batch in (train_loader):
-		def closure():
-			output = model(input)
-			loss = loss_f(output, target)
-			loss.backward()
-			return loss
+  i=0
+  for batch in (train_loader):
+    def closure():
+	output = model(input)
+	loss = loss_f(output, target)
+	loss.backward()
+	return loss
 
-		if i==0:
-			output = model(input)
-			loss=loss_f(output,target)
-			optimizer.step(i, epoch, closure, loss)
-		else:
-			optimizer.step(i, epoch, closure)
-		loss = optimizer.get_loss()
-		optimizer.zero_grad()
+    if i==0:
+	output = model(input)
+	loss=loss_f(output,target)
+	optimizer.step(i, epoch, closure, loss)
+    else:
+	optimizer.step(i, epoch, closure)
+    loss = optimizer.get_loss()
+    optimizer.zero_grad()
 ...
 
     ```
