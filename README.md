@@ -1,4 +1,4 @@
-# GraphSAM
+# GraphSAM->Efficient Sharpness-Aware Minimization for Molecular Graph Transformer Models
 
 
 ## Training
@@ -10,7 +10,7 @@ python train_graph.py --seed 777 --fold 5 --epochs 30 --dataset <datasets> --spl
 ``
 <br>
 where `` <rho> `` is neighborhood ball size. `` <GraphSAM>=2 `` is the GraphSAM algorithm. 
-`` <radius> `` is generally equal to `` <rho> ``. `` <lambda> `` is rho's update rate .  `` <gamma> ``is step_rho's learning rate. `` <beta> `` is smoothing parameters of moving average.
+`` <radius> `` is generally equal to `` <rho> ``. `` <lambda> `` is rho's update rate .  `` <gamma> ``is step_rho's learning rate. `` <beta> `` is the smoothing parameter of the moving average.
 <br>
 
 
