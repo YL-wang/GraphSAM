@@ -304,18 +304,18 @@ def model_train(model, train_dataset, valid_dataset, model_params, train_params,
         #     file2.close()
         # if epoch == 19:
         #     if args.sam == 1:
-        #         file1 = '/home/G2G/gs_sam.txt'
+        #         file1 = '/home/wangyili/G2G/gs_sam.txt'
         #         Save_list(gs_list, file1)
         #
-        #         file2 = '/home/G2G/gh_sam.txt'
+        #         file2 = '/home/wangyili/G2G/gh_sam.txt'
         #         Save_list(gh_list, file2)
         #     elif args.sam ==2:
-        #         # file1 = '/home/G2G/gh_graphsam.txt'
+        #         # file1 = '/home/wangyili/G2G/gh_graphsam.txt'
         #         # Save_list(gh_list, file1)
-        #         file2 = '/home/G2G/gs_graphsam.txt'
+        #         file2 = '/home/wangyili/G2G/gs_graphsam.txt'
         #         Save_list(gs_list, file2)
         #     else:
-        #         file = '/home/G2G/gh_adam.txt'
+        #         file = '/home/wangyili/G2G/gh_adam.txt'
         #         Save_list(gh_list, file)
 
         with open('/root/grover-main/train_loss.txt', 'a', encoding='utf-8') as f:
@@ -374,7 +374,7 @@ if __name__ == '__main__':
     # init args
     parser = argparse.ArgumentParser()
     parser.add_argument("--seed", type=int, help="random seeds", default=np.random.randint(10000))
-    parser.add_argument("--gpu", type=str, help='gpu', default=-1)
+    parser.add_argument("--gpu", type=str, help='gpu', default=1)
     parser.add_argument("--fold", type=int, help='the number of k-fold', default=5)
     parser.add_argument("--dataset", type=str, help='choose a dataset', default='esol')
     parser.add_argument("--split", type=str, help="choose the split type", default='random',
