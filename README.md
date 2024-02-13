@@ -50,3 +50,15 @@ for epoch in range(epochs):
 ...
 
     ```
+## Citation
+
+```
+@inproceedings{
+wang2024efficient,
+title={Efficient Sharpness-Aware Minimization for Molecular Graph Transformer Models},
+author={Yili Wang and Kaixiong Zhou and Ninghao Liu and Ying Wang and Xin Wang},
+booktitle={The Twelfth International Conference on Learning Representations},
+year={2024},
+url={https://openreview.net/forum?id=Od39h4XQ3Y}
+}
+```
